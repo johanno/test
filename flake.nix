@@ -26,15 +26,22 @@
             libusb1
             gcc
           ];
-          installPhase = ''
+          configurePhase = ''
             cd libg15-1.2.7-G110_Patch/
-            ls -al
             ./configure
-            make
-            make install
             cd ../g15macro-1.0.3
             ./configure
+          '';
+          buildPhase = ''
+            cd libg15-1.2.7-G110_Patch/
             make
+            cd ../g15macro-1.0.3
+            make
+          '';
+          installPhase = ''
+            cd libg15-1.2.7-G110_Patch/
+            make install
+            cd ../g15macro-1.0.3
             make install
           '';
     };
